@@ -23,7 +23,6 @@ UnionInput = Union[
 
 example_shape = Body(
     None,
-    description="Nice description",
     example=Rectangle(
         rect_upper_left_x=42,
         rect_upper_left_y=42,
