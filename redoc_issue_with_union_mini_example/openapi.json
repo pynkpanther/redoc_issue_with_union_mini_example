@@ -1,0 +1,154 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
+    "paths": {
+        "/shapes": {
+            "post": {
+                "summary": "Post Shapes",
+                "operationId": "post_shapes_shapes_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "Shape",
+                                "anyOf": [
+                                    {
+                                        "$ref": "#/components/schemas/Circle"
+                                    },
+                                    {
+                                        "$ref": "#/components/schemas/Rectangle"
+                                    }
+                                ],
+                                "description": "Nice description"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Circle": {
+                "title": "Circle",
+                "required": [
+                    "circle_center_x",
+                    "circle_center_y",
+                    "circle_radius"
+                ],
+                "type": "object",
+                "properties": {
+                    "circle_center_x": {
+                        "title": "Circle Center X",
+                        "type": "integer",
+                        "example": 100
+                    },
+                    "circle_center_y": {
+                        "title": "Circle Center Y",
+                        "type": "integer",
+                        "example": 200
+                    },
+                    "circle_radius": {
+                        "title": "Circle Radius",
+                        "type": "integer",
+                        "example": 500
+                    }
+                }
+            },
+            "HTTPValidationError": {
+                "title": "HTTPValidationError",
+                "type": "object",
+                "properties": {
+                    "detail": {
+                        "title": "Detail",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        }
+                    }
+                }
+            },
+            "Rectangle": {
+                "title": "Rectangle",
+                "required": [
+                    "rect_upper_left_x",
+                    "rect_upper_left_y",
+                    "rect_width",
+                    "rect_height"
+                ],
+                "type": "object",
+                "properties": {
+                    "rect_upper_left_x": {
+                        "title": "Rect Upper Left X",
+                        "type": "integer",
+                        "example": 10
+                    },
+                    "rect_upper_left_y": {
+                        "title": "Rect Upper Left Y",
+                        "type": "integer",
+                        "example": 20
+                    },
+                    "rect_width": {
+                        "title": "Rect Width",
+                        "type": "integer",
+                        "example": 30
+                    },
+                    "rect_height": {
+                        "title": "Rect Height",
+                        "type": "integer",
+                        "example": 40
+                    }
+                }
+            },
+            "ValidationError": {
+                "title": "ValidationError",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "type": "object",
+                "properties": {
+                    "loc": {
+                        "title": "Location",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
