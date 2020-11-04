@@ -23,12 +23,25 @@ UnionInput = Union[
 
 example_shape = Body(
     None,
-    example=Rectangle(
-        rect_upper_left_x=42,
-        rect_upper_left_y=42,
-        rect_width=42,
-        rect_height=42,
-    ),
+    examples={
+        "Rectangle": {
+            "summary": "Rectangle",
+            "value": {
+                "rect_upper_left_x": 43,
+                "rect_upper_left_y": 42,
+                "rect_width": 42,
+                "rect_height": 42,
+            },
+        },
+        "Circle": {
+            "summary": "Circle",
+            "value": {
+                "circle_center_x": 2,
+                "circle_center_y": 2,
+                "circle_cradius": 2,
+            },
+        },
+    },
 )
 
 
